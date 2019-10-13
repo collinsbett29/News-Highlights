@@ -9,7 +9,7 @@ This is a Python client library for News API V2. The functions and methods for t
 ## Installation
 Installation for the package can be done via pip:
 
-             $ python -m pip install newsapi-python
+             $ python -m pip install News-Highlights
 ### Usage
 After installation, import the client class into your project:
 
