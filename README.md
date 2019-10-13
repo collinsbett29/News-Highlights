@@ -9,15 +9,15 @@ This is a Python client library for News API V2. The functions and methods for t
 ## Installation
 Installation for the package can be done via pip:
 
-$ python -m pip install newsapi-python
+             $ python -m pip install newsapi-python
 ### Usage
 After installation, import the client class into your project:
 
-   from newsapi import NewsApiClient 
+              from newsapi import NewsApiClient 
 
 Initialize the client with your API key:
 
-   api = NewsApiClient(api_key='XXXXXXXXXXXXXXXXXXXXXXX')
+               api = NewsApiClient(api_key='XXXXXXXXXXXXXXXXXXXXXXX')
 
 ### Top Headlines
 Use .get_top_headlines() to pull from the /top-headlines endpoint:
