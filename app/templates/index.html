@@ -1,0 +1,61 @@
+{% import 'macros.html' as macro%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        {% if title %}
+        <title> {{ title }}</title>
+        {% else %}
+        <title> Welcome to the updated news website </title>
+        {% endif %}        
+    </head>
+    <body>
+        <!-- Business news -->
+        <h3>Business news</h3>
+        <ul>
+            {% macro displayNewsList(business) %}
+            <!-- {% for business_news in business %}
+            <li>{{ business_news.title}}</li>
+            {% endfor %} -->
+        </ul>
+        <!-- Entertainment news -->
+        <h3>Entertainment news</h3>
+        <ul>
+            {% macro displayNewsList(entertainment) %}
+            <!-- {% for entertainment_news in entertainment %}
+            <li>{{ entertainment_news in entertainment}}</li>
+            {% endfor %} -->
+        </ul>
+        <!-- Health news -->
+        <h3>Health news</h3>
+        <ul>
+            {% macro displayNewsList(health) %}
+            <!-- {% for health_news in health %}
+            <li>{{ health_news in health}}</li>
+            {% endfor %} -->
+        </ul>
+        <!-- Science News -->
+        <h3>Science news</h3>
+        <ul>
+            {% macro displayNewsList(science) %}
+            <!-- {% for science_news in science %}
+            <li>{{ science_news in science }}</li>
+            {% endfor %} -->
+        </ul>
+        <!-- Sports News -->
+        <h3>Sports news</h3>
+        <ul>
+            <!-- {% for sports_news in sports %}
+            <li>{{ sports_news in sports }}</li>
+            {% endfor %} -->
+        </ul> 
+        <!-- Technology News -->
+        <h3>Technology news</h3>
+        <ul>
+            {% macro displayNewsList(technology) %}
+            <!-- {% for technology_news in technology %}
+            <li>{{ technology_news in technology }}</li>
+            {% endfor %}  -->
+        </ul>      
+    </body>
+</html>
