@@ -1,3 +1,4 @@
+{% extends 'base.html'%}
 {% import 'macros.html' as macro%}
 <!DOCTYPE html>
 <html>
@@ -10,6 +11,8 @@
         {% endif %}        
     </head>
     <body>
+        <!-- Content block -->
+        {% block content %}
         <!-- Business news -->
         <h3>Business news</h3>
         <ul>
@@ -56,6 +59,8 @@
             <!-- {% for technology_news in technology %}
             <li>{{ technology_news in technology }}</li>
             {% endfor %}  -->
-        </ul>      
+        </ul>   
+        
+        {% endblock%}
     </body>
 </html>
