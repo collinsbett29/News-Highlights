@@ -8,7 +8,7 @@ from ..models import Review
 @main.route('/')
 def index():
     '''
-    View rooot page function that returns index page and its data
+    View root page function that returns index page and its data
     '''
     # Getting news sources
     business_news = get_news('business')
@@ -20,4 +20,15 @@ def index():
     
     title = 'Home - Welcome to the Updated News Website'
     return render_template('index.html',business = business_news,entertainment = entertainment_news,health = health_news,science = science_news,sports = sports_news,technology = technology_news)
+
+@main.route('/news/<int:id>')
+def news(id):
+    '''
+    View news page function that returns the news details page and its data 
+    '''
+    news = get_news(id)
+    title = f'{news.title}'
+    description = Description.get_news(news.id)
+
+    return render_template('news.html',title = title,news = news,description = description)   
 
