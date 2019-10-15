@@ -1,18 +1,22 @@
 {% extends 'base.html'%}
 {% import 'macros.html' as macro%}
-<!DOCTYPE html>
-<html>
-    <head>
+<!-- Styles block -->
+
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+{% endblock %}
+    <!-- <head>
         <meta charset="utf-8">
         {% if title %}
         <title> {{ title }}</title>
         {% else %}
         <title> Welcome to the updated news website </title>
-        {% endif %}        
-    </head>
-    <body>
+        {% endif %}         -->
         <!-- Content block -->
         {% block content %}
+<div class="container">
+    <div class="row">
         <!-- Business news -->
         <h3>Business news</h3>
         <ul>
@@ -21,7 +25,9 @@
             <li>{{ business_news.title}}</li>
             {% endfor %} -->
         </ul>
-        <!-- Entertainment news -->
+    </div>    
+    <div class="row">  
+        <!-- Entertainment news --> 
         <h3>Entertainment news</h3>
         <ul>
             {% macro displayNewsList(entertainment) %}
@@ -29,6 +35,8 @@
             <li>{{ entertainment_news in entertainment}}</li>
             {% endfor %} -->
         </ul>
+    </div>     
+    <div class="row">   
         <!-- Health news -->
         <h3>Health news</h3>
         <ul>
@@ -37,6 +45,8 @@
             <li>{{ health_news in health}}</li>
             {% endfor %} -->
         </ul>
+    </div>
+    <div class="row">    
         <!-- Science News -->
         <h3>Science news</h3>
         <ul>
@@ -45,6 +55,8 @@
             <li>{{ science_news in science }}</li>
             {% endfor %} -->
         </ul>
+    </div> 
+    <div class="row">   
         <!-- Sports News -->
         <h3>Sports news</h3>
         <ul>
@@ -52,6 +64,8 @@
             <li>{{ sports_news in sports }}</li>
             {% endfor %} -->
         </ul> 
+    </div>
+    <div class="row">
         <!-- Technology News -->
         <h3>Technology news</h3>
         <ul>
@@ -59,8 +73,7 @@
             <!-- {% for technology_news in technology %}
             <li>{{ technology_news in technology }}</li>
             {% endfor %}  -->
-        </ul>   
-        
-        {% endblock%}
-    </body>
-</html>
+        </ul> 
+    </div>  
+</div>        
+        {% endblock%}        
