@@ -19,6 +19,12 @@ Initialize the client with your API key:
 
                api = NewsApiClient(api_key='XXXXXXXXXXXXXXXXXXXXXXX')
 
+### Technologies Used
+* Python 3.6
+* Flask Framework
+* HTML/CSS
+* JavaScript              
+
 ### Top Headlines
 Use .get_top_headlines() to pull from the /top-headlines endpoint:
 
