@@ -1,79 +1,51 @@
-{% extends 'base.html'%}
-{% import 'macros.html' as macro%}
-<!-- Styles block -->
+{% extends 'base.html' %}{% block content %}
+<!-- styles block -->
+{% block styles %} {{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'styles.css') }}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css">
+<link href="https://fonts.googleapis.com/css?family=Big+Shoulders+Text&display=swap" rel="stylesheet"> {% endblock %}
 
-{% block styles%}
-    {{ super() }}
-    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+
+<div class=" container news">
+    <h1 class="text-center animated slideInRight ">Top Headlines</h1>
+    {% for source in sources|batch(4) %}
+    <div class="row ">
+        {% for source in source %}
+        <div class="col-md-3 ">
+            <div class="card text-center border-secondary mb-3 box">
+                <p {{source.name}}></p>
+
+                <div class="card-body ">
+                    <div class="card-title "><a href="{{source.url}} " target="_blank ">{{source.name}}</a>
+                    </div>
+                    <p class="card-text ">{{source.description|truncate(100)}}</p>
+
+                </div>
+
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+
+<style>
+    body {
+        background-color: gray;
+        padding-top: 50px;
+    }
+    h1 {
+        color: white;
+        font-size: 80px;
+    }
+
+    
+    h2 {
+        color: blue;
+        font-size: 100px;
+    }
+</style>    
+
 {% endblock %}
-    <!-- <head>
-        <meta charset="utf-8">
-        {% if title %}
-        <title> {{ title }}</title>
-        {% else %}
-        <title> Welcome to the updated news website </title>
-        {% endif %}         -->
-        <!-- Content block -->
-        {% block content %}
-<div class="container">
-    <div class="row">
-        <!-- Business news -->
-        <h3>Business news</h3>
-        <ul>
-            {% macro displayNewsList(business) %}
-            <!-- {% for business_news in business %}
-            <li>{{ business_news.title}}</li>
-            {% endfor %} -->
-        </ul>
-    </div>    
-    <div class="row">  
-        <!-- Entertainment news --> 
-        <h3>Entertainment news</h3>
-        <ul>
-            {% macro displayNewsList(entertainment) %}
-            <!-- {% for entertainment_news in entertainment %}
-            <li>{{ entertainment_news in entertainment}}</li>
-            {% endfor %} -->
-        </ul>
-    </div>     
-    <div class="row">   
-        <!-- Health news -->
-        <h3>Health news</h3>
-        <ul>
-            {% macro displayNewsList(health) %}
-            <!-- {% for health_news in health %}
-            <li>{{ health_news in health}}</li>
-            {% endfor %} -->
-        </ul>
-    </div>
-    <div class="row">    
-        <!-- Science News -->
-        <h3>Science news</h3>
-        <ul>
-            {% macro displayNewsList(science) %}
-            <!-- {% for science_news in science %}
-            <li>{{ science_news in science }}</li>
-            {% endfor %} -->
-        </ul>
-    </div> 
-    <div class="row">   
-        <!-- Sports News -->
-        <h3>Sports news</h3>
-        <ul>
-            <!-- {% for sports_news in sports %}
-            <li>{{ sports_news in sports }}</li>
-            {% endfor %} -->
-        </ul> 
-    </div>
-    <div class="row">
-        <!-- Technology News -->
-        <h3>Technology news</h3>
-        <ul>
-            {% macro displayNewsList(technology) %}
-            <!-- {% for technology_news in technology %}
-            <li>{{ technology_news in technology }}</li>
-            {% endfor %}  -->
-        </ul> 
-    </div>  
-</div>        
-        {% endblock%}        

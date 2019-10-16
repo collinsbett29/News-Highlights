@@ -1,15 +1,25 @@
- {% extends 'base.html'%} -->
-<!-- Content block -->
-{% block content %}
+{%extends 'base.html'%} {% block content %}
+
+<!-- styles block -->
+{% block styles %} {{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename= 'styles.css') }}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css">
+<link href="https://fonts.googleapis.com/css?family=Big+Shoulders+Text|Noto+Sans&display=swap" rel="stylesheet"> {% endblock %}
+
 <div class="container">
-    <!-- Image background -->
+    <h2 class="text-center animated slideInTop">Articles</h2>
+    {% for articles in articles |batch(4) %}
     <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 imagepath" style="background: url({{news.image}}) no-repeat center center">
-        </div>
-        <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-6 news-details">
-            <h3>{{ news.title }}</h3>
-            <p class="description">{{ news.description }}</p>
-        </div>
-    </div>
-</div>
-{% endblock %}
+        {% for articles in articles %}
+
+        <div class="col-md-3 ">
+            <div class="thumbnail box">
+                <a href="{{articles.url}}" target="_blank"><img src="{{articles.image}}" alt="{{articles.title}}" class="img-responsive"></a>
+                <div class="caption">
+                    <h4><a href="{{articles.url}}" target="_blank">{{ articles.title |truncate(35) }}</a></h4>
+                    <p>{{ articles.description | truncate(80) }}</p>
+                    <a href="{{ articles.url }}" target="_blank">Read More</a>
+
+                </div>
+ 
