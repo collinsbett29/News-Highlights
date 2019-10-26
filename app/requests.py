@@ -12,16 +12,14 @@ def configure_request(app):
 	articles_url = app.config ['ARTICLES_BASE_URL']
 	api_key = app.config['NEWS_API_KEY']
 
-
-
 def get_sources():
 	'''
 	Function that gets the json response to our url request
 	'''
-	get_info = base_url.format(api_key)
-	print(get_info)
 
-	with urllib.request.urlopen(get_info) as url:
+	# with urllib.request.urlopen(base_url + '0fb1cd6ef5614bfca5182c188b85f2b9') as url:
+	get_sources_url = base_url.format(api_key)
+	with urllib.request.urlopen(get_sources_url) as url:
      
 		get_sources_data = url.read()
 		get_sources_response = json.loads(get_sources_data)
@@ -34,6 +32,8 @@ def get_sources():
 
 	return sources_results
 
+  
+
 def process_sources(sources_list):
     
     '''
@@ -42,6 +42,7 @@ def process_sources(sources_list):
         source_list: A list of dictionaries that contain news source details
     Returns :
         source_results: A list of source objects
+        
     '''
     
     source_results = []
@@ -68,7 +69,8 @@ def get_articles():
 	Function that processes the articles and returns a list of articles objects
 	'''
 
-	with urllib.request.urlopen(articles_url+ 'f82b03b100064f2dbda8dc8c807bc672') as url:
+	get_articles_url = base_url.format(api_key)
+	with urllib.request.urlopen(get_articles_url) as url:
 		articles_results = json.loads(url.read())
 
 
@@ -80,23 +82,20 @@ def get_articles():
 
 
 def process_articles(articles_list):
+	'''
+	'''
 	articles_object = []
 	for article_item in articles_list:
 		id = article_item.get('id')
-		name = article_item.get('name')
 		author = article_item.get('author')
 		title = article_item.get('title')
 		description = article_item.get('description')
 		url = article_item.get('url')
-		image = article_item.get('urlToImage')
-		content = article_item.get('content')
+		urlToimage = article_item.get('urlToImage')
 		publishedAt = article_item.get('publishedAt')
 		
-		if image:
-			articles_result = Articles(id,name,author,title,description,url,content,publishedAt,image)
+		if urlToimage:
+			articles_result = Articles(id,author,title,description,url,urlToimage,urlToimage,publishedAt,publishedAt)
 			articles_object.append(articles_result)	
 
 	return articles_object
-        
-    
-    
