@@ -1,56 +1,17 @@
-{%extends 'base.html'%} {% block content %}
+{% extends 'base.html'%}
+{% import 'macros.html' as macro %}
+{% block content %}
 
-<!-- styles block -->
-{% block styles %} {{ super() }}
-<link rel="stylesheet" href="{{ url_for('static', filename= 'styles.css') }}">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css">
-<link href="https://fonts.googleapis.com/css?family=Big+Shoulders+Text|Noto+Sans&display=swap" rel="stylesheet"> 
-{% endblock %}
-
-<div class="container">
-    <h2 class="text-center animated slideInLeft">Articles</h2>
-    {% for articles in articles |batch(4) %}
-    <div class="row">
-        {% for articles in articles %}
-
-        <div class="col ">
-            <div class="thumbnail box">
-                <a href="{{articles.url}}" target="_blank"><img src="{{articles.image}}" alt="{{articles.title}}" class="img-responsive"></a>
-                <div class="caption">
-                    <h4><a href="{{articles.url}}" target="_blank">{{ articles.title |truncate(35) }}</a></h4>
-                    <p>{{ articles.description | truncate(80) }}</p>
-                    <a href="{{ articles.url }}" target="_blank">More</a>
-
-                </div>
-                <div class="footer">Published at:{{articles.date}}
-
-                </div>
-
-
-            </div>
-
-        </div>
-        {% endfor %}
+<div class="container-fluid">
+    <div class="well">
+      <h1 style="font-style: italic;font-family: fantasy;text-align: center;"> The Top {{name}} Headlines</h1>
     </div>
-    {% endfor %}
-</div>
-<style>
-    body {
-        background-color: gray;
-        padding-top: 90px;
-    }
-    
-    h2 {
-        color: white;
-        font-size: 60px;
-        font-family: 'Big Shoulders Text', cursive;
-    }
-    
-    .container {
-        font-size: 20px;
-        font-family: 'Noto Sans', sans-serif;
-    }
-</style>
-
-{% endblock %}
+    <div class="row">
+       
+            <div class="col-md-12">
+        {{macro.displayArticleList(news)}}
+        </div>
+    </div>
+    </div>
+  </div>
+{% endblock%}

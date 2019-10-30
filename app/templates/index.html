@@ -1,51 +1,84 @@
-{% extends 'base.html' %}{% block content %}
-<!-- styles block -->
-{% block styles %} {{ super() }}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'styles.css') }}">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css">
-<link href="https://fonts.googleapis.com/css?family=Big+Shoulders+Text&display=swap" rel="stylesheet"> {% endblock %}
+{% extends 'base.html'%} {% import 'macros.html' as macro %} {% block content %}
+<head>
+  <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+</head>
 
+<body>
+<div class="panel panel-default" style="background-color: black;">
+    <div class="panel-body" style="background-color: transparent;">
+    <div id="content" style="background-color: transparent;">
 
-<div class=" container news">
-    <h1 class="text-center animated slideInRight ">Top Headlines</h1>
-    {% for source in sources|batch(4) %}
-    <div class="row ">
-        {% for source in source %}
-        <div class="col-md-3 ">
-            <div class="card text-center border-secondary mb-3 box">
-                <p {{source.name}}></p>
+      <img src="https://ydn-wpengine.netdna-ssl.com/wp-content/themes/ydnlabs/css/images/YDN%20Nameplate%20Medium.gif" style="background-color: white;width: 100%;height: 250px;">
+      <blockquote class="blockquote blockquote-reverse">
+        <footer class="blockquote-footer">
+          <cite title="Source Title"></cite>
+        </footer>
+      </blockquote>
 
-                <div class="card-body ">
-                    <div class="card-title "><a href="{{source.url}} " target="_blank ">{{source.name}}</a>
-                    </div>
-                    <p class="card-text ">{{source.description|truncate(100)}}</p>
-
-                </div>
-
-            </div>
-
+      <div class="container">
+        <div class="well">
+          <h3 style="text-align: center;font-family:Georgia, 'Times New Roman', Times, serif;font-style: italic;" id="general">NEWS SOURCES</h3>
         </div>
-        {% endfor %}
+        {{macro.displaySourceList(general)}}
+      </div>
+      <div class="container">
+        <div class="well">
+          <h1 id="business">Business</h1>
+        </div>
+
+
+        {{macro.displaySourceList(business)}}
+
+      </div>
+
+      <div class="container">
+        <div class="well">
+          <h1 id='technology'>Technology</h1>
+        </div>
+
+        {{macro.displaySourceList(technology)}}
+
+
+      </div>
+
+      <div class="container">
+        <div class="well">
+          <h1 id="sports">Sports</h1>
+        </div>
+
+        {{macro.displaySourceList(sports)}}
+
+      </div>
+
+      <div class="container">
+        <div class="well">
+          <h1 id="health">Health</h1>
+        </div>
+
+        {{macro.displaySourceList(health)}}
+
+      </div>
+      <div class="container">
+        <div class="well">
+          <h1 id="science">Science</h1>
+        </div>
+
+        {{macro.displaySourceList(science)}}
+
+      </div>
+      <div class="container">
+        <div class="well">
+          <h1 id="entertainment">Entertainment</h1>
+        </div>
+        {{macro.displaySourceList(entertainment)}}
+
+      </div>
     </div>
-    {% endfor %}
+  </div>
 </div>
 
-<style>
-    body {
-        background-color: gray;
-        padding-top: 50px;
-    }
-    h1 {
-        color: white;
-        font-size: 80px;
-    }
+</body>
 
-    
-    h2 {
-        color: blue;
-        font-size: 100px;
-    }
-</style>    
 
-{% endblock %}
+
+{% endblock%}
