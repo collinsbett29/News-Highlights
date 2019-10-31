@@ -16,9 +16,6 @@ def configure_request(app):
     base_url = app.config['NEWS_API_SOURCES_URL']
     
 
-
-
-
 def get_news(country,category):
     '''
     function of getting json response ro url
