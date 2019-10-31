@@ -1,6 +1,6 @@
 import urllib.request,json
-from .models import Articles
-from .models import Source
+from .models import Articles,Source
+
 # Getting api key
 api_key = None
 # Getting the movie base url
